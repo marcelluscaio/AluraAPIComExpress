@@ -1,4 +1,5 @@
-import http from "http";
+/* import http from "http"; */
+import app from "./src/app.js"
 
 const PORT = 3000;
 
@@ -8,9 +9,12 @@ const rotas = {
   "/autores": "Entrei na rota autores!"
 };
 
-const server = http.createServer((req, res) => {
+/* const server = http.createServer((req, res) => {
   res.writeHead(200, {"Content-Type": "text/plain"});
   res.end(rotas[req.url]);
-});
+}); */
 
-server.listen(3000, () => {console.log("Servidor escutando!")})
+
+
+/* server.listen(3000, () => {console.log("Servidor escutando!")}) */
+app.listen(3000, () => {console.log("Servidor escutando!")})

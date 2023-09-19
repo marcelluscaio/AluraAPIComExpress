@@ -16,7 +16,7 @@ const app = express();
 routes(app);
 
 
-app.get("/livros/:id", (req, res) => {
+/* app.get("/livros/:id", (req, res) => {
   const index = buscaLivro(req.params.id);
   res.status(200).json(livros[index])
 });
@@ -31,11 +31,12 @@ app.put("/livros/:id", (req, res) => {
   livros[index].titulo = req.body.titulo;
   res.status(200).json(livros);
 });
+ */
 
-app.delete("/livros/:id", (req, res) => {
+/* app.delete("/livros/:id", (req, res) => {
   const index = buscaLivro(req.params.id);
   livros.splice(index, 1);
   res.status(200).json(livros);
-});
+}); */
 
 export default app;

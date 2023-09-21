@@ -5,11 +5,11 @@ import routes from "./Routes/index.js";
 const connection = await connectWithDatabase();
 
 connection.on("error", (error) => {
-  console.error("erro de conexão", error)
+	console.error("erro de conexão", error);
 });
 
 connection.once("open", () => {
-  console.log("Conexão com banco feita com sucesso")
+	console.log("Conexão com banco feita com sucesso");
 });
 
 const app = express();

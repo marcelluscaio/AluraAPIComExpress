@@ -12,7 +12,10 @@ const routes = app => {
 	app.use((error, req, res, next) => {
 		if(error instanceof mongoose.Error.CastError){
 			res.status(400).json({message: "Um ou mais dados estão incorretos"});
-		} else{
+		} else if(error instanceof mongoose.Error.ValidationError){
+			const errorMessages = Object.values(error.errors).map(error => error.message).join("; ");
+			res.status(400).json({message: `Os seguintes erros foram encontrados: ${errorMessages}`});			
+		} else {
 			res.status(500).json({message: "Falha na requisição"});
 		}
 	});

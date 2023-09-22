@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+/* import mongoose from "mongoose"; */
 import { autor } from "../models/Autor.js";
 
 class AutorController{
@@ -11,7 +11,7 @@ class AutorController{
 		}
 	}
 
-	static async listarAutorPorId (req, res) {
+	static async listarAutorPorId (req, res, next) {
 		try{
 			const id = req.params.id;
 			const autorDaBusca = await autor.findById(id);
@@ -22,41 +22,37 @@ class AutorController{
 				res.status(404).json({message: "ID do autor nao localizada"});
 			}
 		} catch (error){
-			if(error instanceof mongoose.Error.CastError){
-				res.status(400).json({message: "ID com formato errado"});
-			} else{
-				res.status(500).json({message: "Falha na requisição"});
-			}
+			next(error);
 		}
 	}
 
-	static async cadastrarAutor(req, res){
+	static async cadastrarAutor(req, res, next){
 		try{
 			const novoAutor = await autor.create(req.body);
 			res.status(201).json({message: "Criado com sucesso", autor: novoAutor});
 
 		} catch (error){
-			res.status(500).json({message: `${error.message} - falha ao cadastrar autor`});
+			next(error);
 		}
 	}
 
-	static async atualizarAutor (req, res) {
+	static async atualizarAutor (req, res, next) {
 		try{
 			const id = req.params.id;
 			await autor.findByIdAndUpdate(id, req.body);
 			res.status(200).json({message: "Autor atualizado"});
 		} catch (error){
-			res.status(500).json({message: "Falha na requisição"});
+			next(error);
 		}
 	}
 
-	static async deletarAutor (req, res) {
+	static async deletarAutor (req, res, next) {
 		try{
 			const id = req.params.id;
 			await autor.findByIdAndDelete(id);
 			res.status(200).json({message: "Autor deletado"});
 		} catch (error){
-			res.status(500).json({message: "Falha na requisição"});
+			next(error);
 		}
 	}
 }

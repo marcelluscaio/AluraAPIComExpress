@@ -8,6 +8,13 @@ const routes = app => {
 
 	app.use(express.json(), livros, autores);
 
+	app.use(
+		// eslint-disable-next-line no-unused-vars
+		(req, res, next) => {
+			res.status(404). json({mensagem: "página não encontrada"});
+		}
+	);
+
 	// eslint-disable-next-line no-unused-vars
 	app.use((error, req, res, next) => {
 		if(error instanceof mongoose.Error.CastError){

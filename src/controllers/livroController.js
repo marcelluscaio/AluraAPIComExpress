@@ -4,7 +4,12 @@ import { autor } from "../models/Autor.js";
 class LivroController{
 	static async listarLivros (req, res) {
 		try{
-			const listaLivros = await livro.find({});
+			const {limite = 5, pagina = 1} = req.query;
+
+			const listaLivros = await livro.find()
+				.skip((pagina - 1) *  limite)
+				.limit(limite)
+				.exec();
 			res.status(200).json(listaLivros);
 		} catch (error){
 			res.status(500).json({message: "Falha na requisição"});

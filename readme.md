@@ -1,6 +1,5 @@
 # My first API using Express and MongoDB
 
-
 ## About
 
 This is an easy-to-use API for managing a bookstore's inventory. Built with Express.js, it provides endpoints to perform various operations related to books and authors.
@@ -20,10 +19,11 @@ This is an easy-to-use API for managing a bookstore's inventory. Built with Expr
 - Data base security by using dotenv
 
 ## Installation
+
 Make sure you have Node.js installed on version 18. Clone the repository and install the dependencies.
 
-
 ## Usage
+
 Configure the Database:
 
 - Set up a MongoDB database to store bookstore data.
@@ -34,15 +34,25 @@ DB_CONNECTION_STRING=mongodb+srv://admin:[YOUR PASSWORD]@cluster0.wrkfymu.mongod
 ```
 
 ## API Endpoints:
+
 GET /livros - Get all books
+
 GET /livros/busca - Filter books
+
 GET /livros/:id - Get a specific book
+
 POST /livros - Create book
+
 PUT /livros/:id - Update book
+
 DELETE /livros/:id - Delete book
 
 GET /autores - Get all authors
+
 GET /autores/:id - Get a specific author
+
 POST /autores - Create author
+
 PUT /autores/:id - Update author
+
 DELETE /autores/:id - Delete author
